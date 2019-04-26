@@ -1,0 +1,28 @@
+{
+  "name": "robotimes",
+  "version": "1.0.0",
+  "description": "This is a robot to register your time in company",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "eslint": "eslint helpers/ providers/ resources/ index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tukaum",
+  "license": "ISC",
+  "dependencies": {
+    "cron": "^1.6.0",
+    "dotenv": "^6.2.0",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "inquirer": "^6.3.1",
+    "moment": "^2.24.0",
+    "nedb": "^1.8.0",
+    "nedb-promise": "^2.0.1",
+    "puppeteer": "^1.12.2",
+    "totalvoice-node": "^1.7.1"
+  },
+  "devDependencies": {}
+}
