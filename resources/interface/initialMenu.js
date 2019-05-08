@@ -2,9 +2,11 @@ const inquirer = require('inquirer');
 const dbconfig = require('../../db');
 const { consoleLog } = require('../../helpers');
 const timeRecordingScheduler = require('../timeRecordingSteps/timeRecordingScheduler');
+const timeRecordingSteps = require('../timeRecordingSteps/timeRecordingSteps');
 
 const menuInitialPrompt = async() => {
   const menuChoices = [
+    { name: 'Marcação de ponto agora', value: 0 },
     { name: 'Agendar marcação de ponto', value: 1 },
     { name: 'Alterar e-mail', value: 2 },
     { name: 'Alterar senha', value: 3 },
@@ -74,6 +76,9 @@ const callMenu = async config => {
   const selectedOption = await menuInitialPrompt();
   let newConfig;
   switch (selectedOption) {
+    case 0:
+      await timeRecordingSteps('Agora', config);
+      break;
     case 1:
       await schedule(config);
       break;

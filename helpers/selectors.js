@@ -10,7 +10,10 @@ const loggedArea = {
 };
 
 const timeRecording = {
-  recordButton: 'a.btn-primary'
+  recordButton: 'a.btn-primary',
+  modalRecordSheetValidation: '[id="myModal"].modal.fade.in',
+  passwordInput: '[id="myModal"] #frmEnviaDados\\:campo-senha',
+  confirmValidationButton: '[id="myModal"] a.btn.btn-primary'
 };
 
 module.exports = {

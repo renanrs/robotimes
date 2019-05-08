@@ -23,6 +23,6 @@ module.exports = async credentials => {
   await page.waitForSelector(selectors.loggedArea.menu, { waitUntil: 'networkidle2' });
   await screenshot(page, 'menu');
   consoleLog.write('Login successfull...');
-  const puppet = { page, browser };
+  const puppet = { page, browser, credentials };
   return puppet;
 };
