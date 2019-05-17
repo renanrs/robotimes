@@ -6,8 +6,8 @@ const timeRecordingSteps = require('../timeRecordingSteps/timeRecordingSteps');
 
 const menuInitialPrompt = async() => {
   const menuChoices = [
-    { name: 'Marcação de ponto agora', value: 0 },
     { name: 'Agendar marcação de ponto', value: 1 },
+    { name: 'Marcação de ponto agora', value: 0 },
     { name: 'Alterar e-mail', value: 2 },
     { name: 'Alterar senha', value: 3 },
     { name: 'Sair' }

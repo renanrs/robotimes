@@ -65,3 +65,6 @@ screenshots/
 
 #local database
 local/*.db
+
+#vscode
+.vscode

@@ -1,16 +1,22 @@
 const Totalvoice = require('totalvoice-node');
 
-module.exports.send = async message => {
-  try {
-    const token = process.env.SMS_TOKEN;
-    const phoneNumber = process.env.PHONE_NUMBER;
-    if (!!token && !!phoneNumber) {
-      const client = new Totalvoice(token);
-      return await client.sms.enviar(phoneNumber, message);
-    }
-    return true;
-  } catch (error) {
-    console.error('SMS send error: ', error);
-    return false;
+class SmsProvider {
+  constructor(smsToken) {
+    this.token = smsToken;
   }
-};
+
+  async send(message, phoneNumber) {
+    try {
+      if (!!this.token && !!phoneNumber) {
+        const client = new Totalvoice(this.token);
+        return await client.sms.enviar(phoneNumber, message);
+      }
+      return true;
+    } catch (error) {
+      console.error('SMS send error: ', error);
+      return false;
+    }
+  }
+}
+
+module.exports = { SmsProvider };
