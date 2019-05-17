@@ -2,19 +2,42 @@ const inquirer = require('inquirer');
 const dbconfig = require('../../db');
 const { consoleLog } = require('../../helpers');
 
+// eslint-disable-next-line no-useless-escape
+const emailValidation = input => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input);
 const timeValidation = input => /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(input);
-
+const cellphoneValidation = input => /^[1-9]{2}9[1-9][0-9]{3}[0-9]{4}?$/.test(input);
 const questions = [
   {
     type: 'input',
     name: 'username',
-    message: 'Informe seu e-mail do mytimes:'
+    message: 'Informe seu e-mail do mytimes:',
+    validate: input => emailValidation(input)
   },
   {
     type: 'password',
     mask: true,
     name: 'password',
     message: 'Informe sua senha do mytimes:'
+  },
+  {
+    type: 'confirm',
+    name: 'confirmSmsToken',
+    message: `Deseja adicionar Token do TotalVoice para receber sms referente a marcação de ponto?
+    Para gerar o token, é necessário se registrar no site www.totalvoice.com.br.`,
+    default: false
+  },
+  {
+    type: 'input',
+    name: 'smsToken',
+    message: 'Informe o token do TotalVoice:',
+    when: answers => answers.confirmSmsToken
+  },
+  {
+    type: 'input',
+    name: 'cellphone',
+    message: 'Informe o número do seu celular. Exemplo: 11988653287',
+    when: answers => answers.confirmSmsToken,
+    validate: input => cellphoneValidation(input)
   },
   {
     type: 'input',

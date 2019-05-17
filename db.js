@@ -16,7 +16,8 @@ const exists = async() => {
 
 const save = async({
   username, password, hourInitial,
-  hourInterval, hourIntervalEnd, hourGetOff
+  hourInterval, hourIntervalEnd, hourGetOff,
+  smsToken, cellphone
 }) => {
   const doc = {
     username,
@@ -24,7 +25,9 @@ const save = async({
     hourInitial,
     hourInterval,
     hourIntervalEnd,
-    hourGetOff
+    hourGetOff,
+    smsToken,
+    cellphone
   };
   let item = await exists();
   if (item) {

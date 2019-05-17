@@ -6,8 +6,8 @@ const timeRecordingSteps = require('../timeRecordingSteps/timeRecordingSteps');
 
 const menuInitialPrompt = async() => {
   const menuChoices = [
-    { name: 'Marcação de ponto agora', value: 0 },
     { name: 'Agendar marcação de ponto', value: 1 },
+    { name: 'Marcação de ponto agora', value: 0 },
     { name: 'Alterar e-mail', value: 2 },
     { name: 'Alterar senha', value: 3 },
     { name: 'Sair' }
@@ -68,6 +68,24 @@ const passwordUpdate = async() => {
   return newConfig;
 };
 
+const confirmTimeRecordingNowPrompt = async() => {
+  const question = {
+    type: 'confirm',
+    name: 'confirmTimeRecordingNow',
+    message: 'Confirma a marcação de ponto?',
+    default: false
+  };
+  const answer = await inquirer.prompt(question);
+  return answer.confirmTimeRecordingNow;
+};
+
+const timeRecordingNow = async config => {
+  const confirm = await confirmTimeRecordingNowPrompt();
+  if (confirm) {
+    await timeRecordingSteps('Agora', config);
+  }
+};
+
 const schedule = async config => {
   timeRecordingScheduler(config);
 };
@@ -77,7 +95,8 @@ const callMenu = async config => {
   let newConfig;
   switch (selectedOption) {
     case 0:
-      await timeRecordingSteps('Agora', config);
+      await timeRecordingNow(config);
+      newConfig = config;
       break;
     case 1:
       await schedule(config);

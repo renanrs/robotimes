@@ -1,9 +1,12 @@
-const sms = require('../../providers/sms');
+const { SmsProvider } = require('../../providers/sms');
 
-module.exports = async period => {
+module.exports = async(smsToken, cellphone, period) => {
   try {
-    if (period) {
-      await sms.send(`Ponto marcado ${period}`);
+    if (smsToken) {
+      const smsProvider = new SmsProvider(smsToken);
+      if (period) {
+        await smsProvider.send(`Ponto marcado ${period}`, cellphone);
+      }
     }
   } catch (error) {
     console.error(error);
