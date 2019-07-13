@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { selectors, screenshot, consoleLog } = require('../../helpers/');
+const { selectors, screenshot, consoleLog } = require('../../../helpers');
 
 const timeRecording = async({ page }) => {
   if (page.url() !== process.env.URL_TIMERECORDING) {
