@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
 const dbconfig = require('../../db');
 const { consoleLog } = require('../../helpers');
-const timeRecordingScheduler = require('../timeRecordingSteps/timeRecordingScheduler');
-const timeRecordingSteps = require('../timeRecordingSteps/timeRecordingSteps');
+const timeRecordingScheduler = require('../timeRecording/timeRecordingScheduler');
+const timeRecordingSteps = require('../timeRecording/timeRecordingSteps');
 
 const menuInitialPrompt = async() => {
   const menuChoices = [

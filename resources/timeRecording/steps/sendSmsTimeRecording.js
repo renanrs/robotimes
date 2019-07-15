@@ -1,4 +1,4 @@
-const { SmsProvider } = require('../../providers/sms');
+const { SmsProvider } = require('../../../providers/sms');
 
 module.exports = async(smsToken, cellphone, period) => {
   try {
