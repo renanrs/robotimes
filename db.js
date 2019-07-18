@@ -34,8 +34,10 @@ const save = async({
     item = Object.assign(item, doc);
     await db.update({ _id: item._id }, { ...item }, {});
   } else {
-    await db.insert(doc);
+    item = await db.insert(doc);
+    console.log('Saved Item is ->', item);
   }
+  return item;
 };
 
 module.exports = { exists, save };
