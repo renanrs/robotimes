@@ -68,5 +68,7 @@ const questions = [
 module.exports = async() => {
   consoleLog.skipLine();
   const answers = await inquirer.prompt(questions);
-  await dbconfig.save(answers);
+
+  const config = await dbconfig.save(answers);
+  return config;
 };

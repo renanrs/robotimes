@@ -6,10 +6,10 @@ const dbconfig = require('../../db');
 
 const init = async() => {
   await consoleLog.splashText();
-  const config = await dbconfig.exists();
+  let config = await dbconfig.exists();
   try {
     if (!config) {
-      await setup();
+      config = await setup();
     }
 
     await initialMenu(config);
