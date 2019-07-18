@@ -34,8 +34,7 @@ const save = async({
     item = Object.assign(item, doc);
     await db.update({ _id: item._id }, { ...item }, {});
   } else {
-    item = await db.insert(doc);
-    console.log('Saved Item is ->', item);
+    item = await db.insert(doc);    
   }
   return item;
 };
