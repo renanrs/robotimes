@@ -24,5 +24,8 @@
     "puppeteer": "^1.12.2",
     "totalvoice-node": "github:renanrs/totalvoice-node#bugfix/axios-vulnerability"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "bin": {
+    "robotimes": "./cli.js"
+  }
 }
