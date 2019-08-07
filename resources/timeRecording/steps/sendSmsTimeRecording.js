@@ -5,7 +5,7 @@ module.exports = async(smsToken, cellphone, period) => {
     if (smsToken) {
       const smsProvider = new SmsProvider(smsToken);
       if (period) {
-        await smsProvider.send(`Ponto marcado ${period}`, cellphone);
+        await smsProvider.send(`[robotimes] -> Ponto marcado ${period}`, cellphone);
       }
     }
   } catch (error) {

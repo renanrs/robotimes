@@ -21,6 +21,8 @@ const timeRecordingSheetValidation = async({ page, credentials }) => {
     await page.keyboard.type(credentials.password);
     await page.click(selectors.timeRecording.confirmValidationButton);
     await screenshot(page, 'recordsheet_validation');
+    await page.waitFor(3000);
+    await screenshot(page, 'recordsheet_validation_after_pagewait');
   }
 };
 
