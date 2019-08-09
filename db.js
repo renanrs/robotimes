@@ -1,8 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 const Datastore = require('nedb-promise');
+const path = require('path');
 
+const storeOpts = {
+  filename: path.resolve(__dirname, process.env.DB_PATH),
+  autoload: true
+};
 
-const db = new Datastore({ filename: process.env.DB_PATH, autoload: true });
+const db = new Datastore(storeOpts);
 
 const exists = async() => {
   const item = await db.findOne({});
