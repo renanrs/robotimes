@@ -1,4 +1,5 @@
-require('dotenv').config({ path: 'variables.env' });
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, 'variables.env') });
 const timesInterface = require('./resources/interface/index');
 
 (async() => {
