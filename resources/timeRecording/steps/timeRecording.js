@@ -8,7 +8,7 @@ const timeRecording = async({ page }) => {
 
   await page.waitForSelector(selectors.timeRecording.recordButton);
   await screenshot(page, 'timerecording');
-  // await page.click(selectors.timeRecording.recordButton);
+  await page.click(selectors.timeRecording.recordButton);
   consoleLog.write(`Time recorded => ${moment(Date.now()).format('hh:mm')}`, true, true);
   await screenshot(page, 'timerecorded');
 };
