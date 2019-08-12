@@ -1,6 +1,6 @@
 {
   "name": "robotimes",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This is a robot to register your time in company",
   "main": "index.js",
   "scripts": {
