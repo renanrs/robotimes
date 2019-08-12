@@ -1,11 +1,12 @@
 const fs = require('fs');
+const path = require('path');
 
-const scrDir = process.env.SCREENSHOT_DIR;
+const scrDir = path.resolve(path.resolve('.'), process.env.SCREENSHOT_DIR);
 
 module.exports = async(page, fileName) => {
   if (process.env.TAKE_SCREENSHOT) {
     const currentDate = new Date().toLocaleString();
-    const fullDir = scrDir.concat(`${currentDate.replace(/\//g, '-')
+    const fullDir = scrDir.concat(`/${currentDate.replace(/\//g, '-')
       .replace(/,/g, '')
       .split(' ')[0]}/`);
 
