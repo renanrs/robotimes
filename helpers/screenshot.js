@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const scrDir = path.resolve(path.resolve('.'), process.env.SCREENSHOT_DIR);
+const rootPath = path.dirname(require.main.filename || process.mainModule.filename);
+const scrDir = path.resolve(rootPath, process.env.SCREENSHOT_DIR);
 
 module.exports = async(page, fileName) => {
   if (process.env.TAKE_SCREENSHOT) {
