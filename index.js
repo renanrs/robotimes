@@ -12,8 +12,8 @@ const program = new commander.Command();
 program.version(pkgJson.version);
 
 program
-  .option('-s|--schedule', 'Scheduling time recorder')
-  .option('-r|--record-now', 'Recording Time')
+  .option('-s, --schedule', 'Scheduling time recorder')
+  .option('-r, --record-now', 'Recording Time')
   .parse(process.argv);
 
 dbconfig.exists().then(config => {
