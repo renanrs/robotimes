@@ -1,13 +1,12 @@
 const inquirer = require('inquirer');
-const dbconfig = require('../../db');
+// const dbconfig = require('../../db');
 const { consoleLog } = require('../../helpers');
-const timeRecordingScheduler = require('../timeRecording/timeRecordingScheduler');
-const timeRecordingSteps = require('../timeRecording/timeRecordingSteps');
+
 
 const menuInitialPrompt = async() => {
   const menuChoices = [
-    { name: 'Agendar marcação de ponto', value: 1 },
-    { name: 'Marcação de ponto agora', value: 0 },
+    { name: 'Agendar marcação de ponto', value: 0 },
+    { name: 'Marcação de ponto agora', value: 1 },
     { name: 'Alterar e-mail', value: 2 },
     { name: 'Alterar senha', value: 3 },
     { name: 'Sair' }
@@ -33,7 +32,7 @@ const changeEmailPrompt = async() => {
   };
 
   const answer = await inquirer.prompt(changeEmailQuestion);
-  return { username: answer.changeEmail };
+  return answer.changeEmail;
 };
 
 const changePasswordPrompt = async() => {
@@ -44,28 +43,7 @@ const changePasswordPrompt = async() => {
   };
 
   const answer = await inquirer.prompt(changePwdQuestion);
-  return { password: answer.changePassword };
-};
-
-const updateConfig = async field => {
-  let item = await dbconfig.exists();
-  if (item) {
-    item = Object.assign(item, field);
-    await dbconfig.save(item);
-  }
-  return item;
-};
-
-const emailUpdate = async() => {
-  const answer = await changeEmailPrompt();
-  const newConfig = await updateConfig(answer);
-  return newConfig;
-};
-
-const passwordUpdate = async() => {
-  const answer = await changePasswordPrompt();
-  const newConfig = await updateConfig(answer);
-  return newConfig;
+  return answer.changePassword;
 };
 
 const confirmTimeRecordingNowPrompt = async() => {
@@ -79,44 +57,34 @@ const confirmTimeRecordingNowPrompt = async() => {
   return answer.confirmTimeRecordingNow;
 };
 
-const timeRecordingNow = async config => {
-  const confirm = await confirmTimeRecordingNowPrompt();
-  if (confirm) {
-    await timeRecordingSteps('Agora', config);
-  }
-};
+// const emailUpdate = async() => {
+//   const answer = await changeEmailPrompt();
+//   const newConfig = await dbconfig.save(answer);
+//   return newConfig;
+// };
 
-const schedule = async config => {
-  timeRecordingScheduler(config);
-};
+// const passwordUpdate = async() => {
+//   const answer = await changePasswordPrompt();
+//   const newConfig = await dbconfig.save(answer);
+//   return newConfig;
+// };
 
-const callMenu = async config => {
-  const selectedOption = await menuInitialPrompt();
-  let newConfig;
-  switch (selectedOption) {
-    case 0:
-      await timeRecordingNow(config);
-      newConfig = config;
-      break;
+module.exports = async() => {
+  const option = await menuInitialPrompt();
+  let value = null;
+  switch (option) {
     case 1:
-      await schedule(config);
+      value = await confirmTimeRecordingNowPrompt();
       break;
     case 2:
-      newConfig = await emailUpdate();
+      value = await changeEmailPrompt();
       break;
     case 3:
-      newConfig = await passwordUpdate();
+      value = await changePasswordPrompt();
       break;
-
     default:
-      process.exit(0);
       break;
   }
 
-  if (newConfig) {
-    await callMenu(newConfig);
-  }
-};
-module.exports = async config => {
-  await callMenu(config);
+  return { option, value };
 };
