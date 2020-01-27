@@ -57,18 +57,6 @@ const confirmTimeRecordingNowPrompt = async() => {
   return answer.confirmTimeRecordingNow;
 };
 
-// const emailUpdate = async() => {
-//   const answer = await changeEmailPrompt();
-//   const newConfig = await dbconfig.save(answer);
-//   return newConfig;
-// };
-
-// const passwordUpdate = async() => {
-//   const answer = await changePasswordPrompt();
-//   const newConfig = await dbconfig.save(answer);
-//   return newConfig;
-// };
-
 module.exports = async() => {
   const option = await menuInitialPrompt();
   let value = null;

@@ -5,14 +5,14 @@ const timeRecordingSteps = require('../timeRecording/timeRecordingSteps');
 const { consoleLog, errorHandler } = require('../../helpers');
 const dbconfig = require('../../db');
 
-const invoke = ({ option, value }, config) => {
+const invokeAction = async({ option, value }, config) => {
   let newConfig = null;
   switch (option) {
     case 0:
       timeRecordingScheduler(config);
       break;
     case 1:
-      if (value) timeRecordingSteps('Agora', config);
+      if (value) await timeRecordingSteps('Agora', config);
       break;
     case 2:
       newConfig = dbconfig.save(Object.assign(config, { username: value }));
@@ -27,20 +27,26 @@ const invoke = ({ option, value }, config) => {
   return newConfig || config;
 };
 
+const showMenu = async config => {
+  const selectedItem = await initialMenu();
+  try {
+    await invokeAction(selectedItem, config);
+  } catch (error) {
+    await errorHandler(error);
+  }
+  if (selectedItem && selectedItem.option > 0) await showMenu(config);
+};
+
 const init = async() => {
   await consoleLog.splashText();
   let config = await dbconfig.exists();
-  try {
-    if (!config) config = await setup();
-    let selectedItem = null;
-    selectedItem = await initialMenu();
-    await invoke(selectedItem, config);
-    if (selectedItem > 0) await init();
-  } catch (error) {
-    errorHandler(error);
-    process.exit(0);
-  }
-};
 
+  if (!config) {
+    config = await setup();
+    await dbconfig.save(config);
+  }
+
+  await showMenu(config);
+};
 
 module.exports = { init };
