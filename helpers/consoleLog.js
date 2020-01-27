@@ -1,9 +1,12 @@
 const os = require('os');
+const pjson = require('../package.json');
+
+const FgRed = '\x1b[31m';
 
 const snooze = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const splashText = async() => {
-  console.log('                  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░');
+  console.log('\x1b[32m', '                  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░');
   console.log('                  ░░░░░░░░▀▀▀▀▄▄▄▄▄▄▄▄▀▀▀▀▀▀▀░░░░░░░░░░░░░░');
   console.log('                  ░░░░░░░░ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄▀░░░░░░░░░░░');
   console.log('                  ░░░░░░░ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ░░░░░░░░░░');
@@ -27,9 +30,10 @@ const splashText = async() => {
   console.log('                  ░░░░░░░║║║╚╣╚╝║╚╝║╚╝║║╚╣║║║║║═╬══║░░░░░░░');
   console.log('                  ░░░░░░░╚╝╚═╩══╩══╩══╝╚═╩╩╩╩╩══╩══╝░░░░░░░');
   console.log('                  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░');
+  console.log(FgRed, `                                   v${pjson.version}                            `,);
   await snooze(2000);
   console.log(os.EOL);
-  console.log('                          Bem vindo(a) ao Robotimes!');
+  console.log('\x1b[0m', '                          Bem vindo(a) ao Robotimes!');
   console.log(os.EOL);
   await snooze(500);
 };
