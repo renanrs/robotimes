@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "DEBUG=true node index.js",
+    "release": "release-it",
     "eslint": "eslint helpers/ providers/ resources/ index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,7 +25,9 @@
     "puppeteer": "^1.12.2",
     "totalvoice-node": "^1.7.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "release-it": "^12.4.3"
+  },
   "bin": {
     "robotimes": "./cli.js"
   }
