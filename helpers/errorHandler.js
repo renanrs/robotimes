@@ -10,7 +10,7 @@ const sendSMS = async({ smsToken, cellphone }, msg) => {
 
 module.exports = async(error, period) => {
   const dbconfig = await db.exists();
-  const msg = `Something wrong happend "${period}"=> details: ${error}`;
+  const msg = `\n\r'Something wrong happend "${period}"=> details: ${error}\n\r\n\r`;
   console.error(msg);
 
   if (dbconfig) {
