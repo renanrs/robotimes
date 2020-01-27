@@ -6,7 +6,7 @@ const FgRed = '\x1b[31m';
 const snooze = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const splashText = async() => {
-  console.log('\x1b[32m', '                  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░');
+  console.log('\x1b[32m', '                 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░');
   console.log('                  ░░░░░░░░▀▀▀▀▄▄▄▄▄▄▄▄▀▀▀▀▀▀▀░░░░░░░░░░░░░░');
   console.log('                  ░░░░░░░░ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▄▀░░░░░░░░░░░');
   console.log('                  ░░░░░░░ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ ░░░░░░░░░░');
