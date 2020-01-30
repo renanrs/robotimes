@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const dbconfig = require('../../db');
+// const dbconfig = require('../../db');
 const { consoleLog } = require('../../helpers');
 
 // eslint-disable-next-line no-useless-escape
@@ -68,7 +68,6 @@ const questions = [
 module.exports = async() => {
   consoleLog.skipLine();
   const answers = await inquirer.prompt(questions);
-
-  const config = await dbconfig.save(answers);
-  return config;
+  // const config = await dbconfig.save(answers);
+  return answers;
 };

@@ -19,27 +19,13 @@ const exists = async() => {
   return null;
 };
 
-const save = async({
-  username, password, hourInitial,
-  hourInterval, hourIntervalEnd, hourGetOff,
-  smsToken, cellphone
-}) => {
-  const doc = {
-    username,
-    password,
-    hourInitial,
-    hourInterval,
-    hourIntervalEnd,
-    hourGetOff,
-    smsToken,
-    cellphone
-  };
+const save = async args => {
   let item = await exists();
   if (item) {
-    item = Object.assign(item, doc);
+    item = Object.assign(item, args);
     await db.update({ _id: item._id }, { ...item }, {});
   } else {
-    item = await db.insert(doc);
+    item = await db.insert(args);
   }
   return item;
 };
