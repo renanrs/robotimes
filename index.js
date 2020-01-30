@@ -9,6 +9,7 @@ const scheduler = require('./resources/timeRecording/timeRecordingScheduler');
 const timeRecordingSteps = require('./resources/timeRecording/timeRecordingSteps');
 
 const program = new commander.Command();
+const self = this;
 program.version(pkgJson.version);
 
 program
@@ -16,8 +17,11 @@ program
   .option('-r, --record-now', 'Recording Time')
   .parse(process.argv);
 
-dbconfig.exists().then(config => {
-  if (!config) process.exitCode(1);
+(async() => {
+  const config = await dbconfig.exists();
+  if ((!config) && (program.schedule || program.recordNow)) {
+   throw new Error('There is no configuration!!!!\n\rPlease launch Robotimes without params.');
+  }
 
   if (program.schedule) {
     scheduler(config);
@@ -26,4 +30,4 @@ dbconfig.exists().then(config => {
   } else {
     timesInterface.init();
   }
-});
+})().catch(error => console.error(error.message));
