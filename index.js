@@ -9,7 +9,6 @@ const scheduler = require('./resources/timeRecording/timeRecordingScheduler');
 const timeRecordingSteps = require('./resources/timeRecording/timeRecordingSteps');
 
 const program = new commander.Command();
-const self = this;
 program.version(pkgJson.version);
 
 program
