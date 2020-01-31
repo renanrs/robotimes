@@ -20,7 +20,7 @@ Após finalizar a instalação, executar o comando descrito abaixo:
 ```shell
 robotimes
 ```
-Após realizar a configuração inicial, é possível executar as operações via linha de comando. Para visualizar as opções executar o comando abaixo:
+Após realizar a configuração inicial, é possível executar as operações via linha de comando. Para visualizar as opções, executar o comando abaixo:
 
 ```shell
 robotimes -h
