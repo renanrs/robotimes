@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-// const dbconfig = require('../../db');
 const { consoleLog } = require('../../helpers');
 
 
