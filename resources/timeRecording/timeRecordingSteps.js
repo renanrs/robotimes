@@ -7,7 +7,7 @@ const { errorHandler, consoleLog } = require('../../helpers');
 module.exports = async(period, { username, password, smsToken, cellphone }) => {
   try {
     consoleLog.skipLine();
-    consoleLog.write(period, true, true);
+    consoleLog.write(`${period} ⌚`, true, true);
 
     let puppet = await luncher.init();
     puppet = Object.assign(puppet, { credentials: { username, password } });

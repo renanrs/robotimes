@@ -12,7 +12,7 @@ const invokeAction = async({ option, value }, config) => {
       timeRecordingScheduler(config);
       break;
     case 1:
-      if (value) await timeRecordingSteps('Agora', config);
+      if (value) await timeRecordingSteps('Agora ⌚', config);
       break;
     case 2:
       newConfig = dbconfig.save(Object.assign(config, { username: value }));

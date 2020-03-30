@@ -19,14 +19,14 @@ program
 (async() => {
   const config = await dbconfig.exists();
   if ((!config) && (program.schedule || program.recordNow)) {
-   throw new Error('There is no configuration!!!!\n\rPlease launch Robotimes without params.');
+    throw new Error('There is no configuration!!!!\n\rPlease launch Robotimes without params.');
   }
 
   if (program.schedule) {
     scheduler(config);
   } else if (program.recordNow) {
-    timeRecordingSteps('Agora', config);
+    timeRecordingSteps('Agora ⌚', config);
   } else {
     timesInterface.init();
   }
-})().catch(error => console.error(error.message));
+})().catch(error => console.error(error.message, '😭'));

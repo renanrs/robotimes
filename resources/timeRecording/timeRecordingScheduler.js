@@ -4,10 +4,10 @@ const { consoleLog } = require('../../helpers');
 
 const getCronTimeList = config => {
   const timesx = [
-    [`00 ${config.hourInitial.split(':')[1]} ${config.hourInitial.split(':')[0]} * * 1-5`, 'entrada'], // entrada
-    [`00 ${config.hourInterval.split(':')[1]} ${config.hourInterval.split(':')[0]} * * 1-5`, 'início intervalo'], // inicio intervalo
-    [`00 ${config.hourIntervalEnd.split(':')[1]} ${config.hourIntervalEnd.split(':')[0]} * * 1-5`, 'fim intervalo'], // fim intervalo
-    [`00 ${config.hourGetOff.split(':')[1]} ${config.hourGetOff.split(':')[0]} * * 1-5`, 'saida'] // saida
+    [`00 ${config.hourInitial.split(':')[1]} ${config.hourInitial.split(':')[0]} * * 1-5`, 'entrada'],
+    [`00 ${config.hourInterval.split(':')[1]} ${config.hourInterval.split(':')[0]} * * 1-5`, 'início intervalo'],
+    [`00 ${config.hourIntervalEnd.split(':')[1]} ${config.hourIntervalEnd.split(':')[0]} * * 1-5`, 'fim intervalo'],
+    [`00 ${config.hourGetOff.split(':')[1]} ${config.hourGetOff.split(':')[0]} * * 1-5`, 'saida']
   ];
   return timesx;
 };
